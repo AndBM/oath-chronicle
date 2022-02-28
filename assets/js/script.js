@@ -1,101 +1,177 @@
-import {savestring, save, worldSuitArray, dispSuitArray} from './oath-parser.js'
+import {savestring, save, suits, regions, houses, worldSuitDict} from './oath_parser.js';
 
-// Automatically insert a few things into the webpage
+// general utilities
+function suitImagePath(suit) {
+    return 'assets/images/suit-' + suit + '.png';
+}
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// set background image based on previous winner
+if (window.innerWidth >= 1200) {
+    var img_name;
+    if (save.prevWinColor == 'chancellor') {
+        img_name = 'full_chancellor.png';
+    } else {
+        img_name = 'full_' + save.exileCitizenStatus[save.prevWinColor] + '_' + save.prevWinColor + '.png';
+    }
+    document.body.style.backgroundImage = 'url(assets/character_art/' + img_name;
+}
+
+// Insert name under Oath logo
 document.getElementById("name").innerHTML = save.name;
-insertSiteName("site1",save.site1);
-insertSiteName("site2",save.site2);
-insertSiteName("site3",save.site3);
-insertSiteName("site4",save.site4);
-insertSiteName("site5",save.site5);
-insertSiteName("site6",save.site6);
-insertSiteName("site7",save.site7);
-insertSiteName("site8",save.site8);
 
 // Insert current oath
-switch(save.oath){
-    case "Supremacy":
-        document.getElementById("oath").innerHTML = '<img src="assets/images/supremacy.png" style="height:40px;" /> <span style="font-size: 40px;"> <span class="goudy-capital">O</span>ath <em>of</em> <span class="goudy-capital">S</span>upremacy</span>';
-        break;
-    case "People":
-        document.getElementById("oath").innerHTML = '<img src="assets/images/people.png" style="height:40px;" /> <span style="font-size: 40px;"> <span class="goudy-capital">O</span>ath <em>of</em> <span class="goudy-capital">T</span>he <span class="goudy-capital">P</span>eople</span>';
-        break;
-    case "Devotion":
-        document.getElementById("oath").innerHTML = '<img src="assets/images/devotion.png" style="height:40px;" /> <span style="font-size: 40px;"> <span class="goudy-capital">O</span>ath <em>of</em> <span class="goudy-capital">D</span>evotion</span>';
-        break;
-    case "Protection":
-        document.getElementById("oath").innerHTML = '<img src="assets/images/protection.png" style="height:40px;" /> <span style="font-size: 40px;"> <span class="goudy-capital">O</span>ath <em>of</em> <span class="goudy-capital">S</span>anctuary</span>';
+const oathFancyName = {
+    'supremacy': '<span class="goudy-capital">S</span>upremacy',
+    'people': '<span class="goudy-capital">T</span>he <span class="goudy-capital">P</span>eople',
+    'devotion': '<span class="goudy-capital">D</span>evotion',
+    'protection': '<span class="goudy-capital">P</span>rotection'
+};
+document.getElementById('oath').innerHTML = '<img src="assets/images/' + save.oath + '.png"> <span class="goudy-capital">O</span>ath <em>of</em> ' + oathFancyName[save.oath];
+
+
+// Insert active players
+function createPlayerProfile(color, citizenStatus, chancellorColor) {
+    // color is the house color, as in prevWinColor
+    // citizenStatus is "exile" or "citizen"
+    const playerFig = document.createElement('figure');
+    const playerImg = document.createElement('img');
+    playerImg.classList.add('portrait');
+    const playerCaption = document.createElement('figcaption');
+    var citizenString;
+    var profileName;
+    var profileTitle;
+    if (color == 'chancellor') {
+        playerImg.src = 'assets/character_art/portrait_chancellor.png';
+        citizenString = '';
+        profileName = houses[chancellorColor]['player'];
+        profileTitle = 'Rigskansler';
+    } else {
+        playerImg.src = 'assets/character_art/portrait_' + citizenStatus + '_' + color + '.png';
+        citizenString = ' (' + citizenStatus + ')';
+        profileName = houses[color]['player'];
+        profileTitle = houses[color]['name'];
+    }
+    playerCaption.innerHTML = '<strong>' + profileTitle + '</strong>' + '<br>' + profileName + citizenString;
+
+    playerFig.appendChild(playerImg);
+    playerFig.appendChild(playerCaption);
+    return playerFig;
+}
+const colorList = ['red', 'blue', 'white', 'yellow', 'black'];
+var chancellorColor = save.prevWinColor; // default to chancellor loss
+var prevChancellorColor;
+for (const color of colorList) {
+    // The chancellor is the only defined player who was inactive
+    // assuming all players always participate
+    if (houses[color]['player'] && save.prevActiveStatus[color] == 'inactive') {
+        prevChancellorColor = color;
+    }
+}
+if (save.prevWinColor == 'chancellor') {
+    chancellorColor = prevChancellorColor;
+} else {
+    // If chancellor loss, set winner house inactive and give chancellor their house back
+    save.prevActiveStatus[save.prevWinColor] = 'inactive';
+    save.prevActiveStatus[prevChancellorColor] = 'active';
+}
+// First chancellor, then others
+document.getElementById('player-profiles').appendChild(createPlayerProfile('chancellor', null, chancellorColor));
+for (const color of colorList) {
+    if (save.prevActiveStatus[color] == 'active') {
+        document.getElementById('player-profiles').appendChild(createPlayerProfile(color, save.exileCitizenStatus[color], chancellorColor));
+    }
 }
 
-// Insert suit numbers
-var number_tags = document.getElementsByClassName('number');
-for (var j=0;j<number_tags.length;j++){
-var script_tag = number_tags[j]
-    const count = worldSuitArray[j];
 
-    script_tag.innerHTML += count;
+// insert site names
+function cardHoverLink(string) {
+    return '<a class="hover_img" href="javascript:;">' + string + '<img src="assets/cards/' + string + '.webp"></a>';
 }
-
-// Automatically visualize the suit distribution with a bar plot
-var counter_tags = document.getElementsByClassName('counter');
-for (var j=0;j<counter_tags.length;j++){
-var script_tag = counter_tags[j]
-  var imgsrc = script_tag.getAttribute("data-imgsrc");
-  const count = worldSuitArray[j];
-
-  script_tag.innerHTML += '<p>';
-  for (var i = 1; i <= count; i++) {
-    script_tag.innerHTML += '<img src="' + imgsrc + '"; style="width:1em;"/>';
-  }
-  script_tag.innerHTML += '</p>';
+function createSite(site) {
+    // create the site <li> ... </li> element
+    const siteLI = document.createElement('li');
+    var siteStr = cardHoverLink(site.name);
+    if (site.index1 < 210) {
+        siteStr += ': ' + cardHoverLink(site.card1);
+    }
+    if (site.index2 < 210) {
+        siteStr += ', ' + cardHoverLink(site.card2);
+    }
+    if (site.index3 < 210) {
+        siteStr += ', ' + cardHoverLink(site.card3);
+    }
+    siteLI.innerHTML = siteStr;
+    return siteLI;
 }
+function insertSiteList(region, siteList) {
+    // insert a header and a list of sites into the element with id "sites"
+    const siteUL = document.createElement('ul');
+    siteList.forEach(
+        site => (site.name) ? siteUL.appendChild(createSite(site)) : null
+    );
+    const siteLabel = document.createElement('em');
+    siteLabel.innerText = capitalize(region);
+    document.getElementById('sites').appendChild(siteLabel);
+    document.getElementById('sites').appendChild(siteUL);
+}
+regions.forEach(
+    region => insertSiteList(region, save.sites[region])
+);
+
+
+// visualize the suit distribution with a bar plot
+function createSuitRow(suit, count) {
+    const row = document.createElement('tr');
+
+    const suitCol = document.createElement('td');
+    suitCol.innerText = capitalize(suit);
+
+    const numberCol = document.createElement('td');
+    numberCol.innerText = count;
+
+    const barVisualizationCol = document.createElement('td');
+    barVisualizationCol.classList.add('counter');
+    for (let i=0; i<count; i++) {
+        const suitImage = document.createElement('img');
+        suitImage.src = suitImagePath(suit);
+        barVisualizationCol.appendChild(suitImage);
+    }
+
+    row.appendChild(suitCol);
+    row.appendChild(numberCol);
+    row.appendChild(barVisualizationCol);
+
+    return row;
+}
+suits.forEach(
+    suit => document.getElementById('card-counts').appendChild(
+        createSuitRow(suit, worldSuitDict[suit])
+    )
+);
+
+
+// insert savestring
+document.getElementById('savestring').innerHTML = savestring + '\n';
+
 
 // Insert a random suit quote in the footer
 (function() {
-  var quotes = [
-    {
-      text: " The home, a crackling fire. Calm, contentedness, and ease. ",
-      img: "assets/images/suit-hearth.png"
-    },
-    {
-      text: " Bright lights in the night sky. Starry-eyed discovery and esoteric tradition. ",
-      img: "assets/images/suit-arcane.png"
-    },
-    {
-      text: " The betrayal of a sibling. The sewers, rats chewing on spare bones. ",
-      img: "assets/images/suit-discord.png"
-    },
-    {
-      text: " Sword, stone, and burnished silver. Lockstep, willing or unwilling. ",
-      img: "assets/images/suit-order.png"
-    },
-    {
-      text: " Scratching, rustling in the grass. Fur, scale, and claw. ",
-      img: "assets/images/suit-beast.png"
-    },
-    {
-      text: " The sun, the moon—those traveling bodies. Care for one’s own. ",
-      img: "assets/images/suit-nomad.png"
-    }
-  ];
-  var quote = quotes[Math.floor(Math.random() * quotes.length)];
-  // Get the Quote element from the footer and insert the HTML
-  document.getElementById("quote").innerHTML =
-    '<p>' + 
-    '<img src="' + quote.img + '"; style="height:1em;"/>'+
-    quote.text +
-    '<img src="' + quote.img + '"; style="height:1em;"/>' + 
-    '</p>';
+    var quotes = {
+        'hearth': 'The home, a crackling fire. Calm, contentedness, and ease.',
+        'arcane': 'Bright lights in the night sky. Starry-eyed discovery and esoteric tradition.',
+        'discord': 'The betrayal of a sibling. The sewers, rats chewing on spare bones.',
+        'order': 'Sword, stone, and burnished silver. Lockstep, willing or unwilling.',
+        'beast': 'Scratching, rustling in the grass. Fur, scale, and claw.',
+        'nomad': 'The sun, the moon—those traveling bodies. Care for one’s own.'
+    };
+    var suit = suits[Math.floor(Math.random() * suits.length)];
+    document.getElementById('quote').innerHTML =
+        '<p>' +
+        '<img src="' + suitImagePath(suit) + '"> '+
+        quotes[suit] +
+        ' <img src="' + suitImagePath(suit) + '">' +
+        '</p>';
 })();
-
-function insertSiteName(id,site){
-if (site.name != undefined){
-	var string = '</br>- ' + site.name;
-	if (site.index1 < 210){
-		string += ': '+ site.card1;}
-	if (site.index2 < 210){
-		string += ', '+ site.card2;}
-	if (site.index3 < 210){
-		string += ', '+ site.card3;}
-	document.getElementById(id).innerHTML = string
-	}
-}

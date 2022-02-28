@@ -3,64 +3,6 @@ title: Game State
 layout: default
 ---
 
-## Game State
-
-**Current oath:**
-
-<span id="oath" />
-
-### Dramatis Personæ
-
-|<img src="assets/images/chancellor-portrait.jpg" class="portrait"/>|<img src="assets/images/blue-portrait.png"  class="portrait"/>|
-|---|---|
-|**Rigskansleren**: <br />Andreas|**El Bastardo**: <br />Alik (Citizen)|
-| | |
-|<img src="assets/images/black-portrait.png"  class="portrait"/>|<img src="assets/images/yellow-portrait.png" class="portrait"/>|
-|**Loyalisten**:<br />Alexander (Exile)| **Vox Populi**: <br /> Kasper (Exile) |
-
-<!--
-<img src="assets/images/yellow-portrait.png" class="portrait"/>
-
-**Den Blodige Greve**: <br />Andreas (Exile) 
-<img src="assets/images/white-portrait.png" class="portrait"/>
--->
-
-### The World
-
-**Sites in play:**
-
-_Cradle_
-<span id="site1" />
-<span id="site2" />
-
-_Provinces_
-<span id="site3" />
-<span id="site4" />
-<span id="site5" />
-
-_Hinterlands_
-<span id="site6" />
-<span id="site7" />
-<span id="site8" />
-
-**World Deck:** 
-
-|Suit|Number|
-|---|---|
-|<span class="number"/> Discord| <span class="counter" data-imgsrc="assets/images/suit-discord.png" ></span>|
-|<span class="number"/> Hearth| <span class="counter" data-imgsrc="assets/images/suit-hearth.png" ></span>|
-|<span class="number"/> Nomad| <span class="counter" data-imgsrc="assets/images/suit-nomad.png" ></span>|
-|<span class="number"/> Arcane| <span class="counter" data-imgsrc="assets/images/suit-arcane.png" ></span>|
-|<span class="number"/> Order| <span class="counter" data-imgsrc="assets/images/suit-order.png" ></span>|
-|<span class="number"/> Beast| <span class="counter" data-imgsrc="assets/images/suit-beast.png" ></span>|
-
-**TTS Chronicle:**
-```
-030303000613The First Chronicle3A0200012345133111E910CE2AE3000AE5FF07FFFFDD12FFFFFF0CD0DCFF23FFFFFF08C770FF36847714AF870828D4D66E047C8FD2D3059B09AAD5248CC00C1C335D32302BA4181E590B0E131D3D2D9C379DC517AB2C349E011B167F201E252758121F290D0F350015075E220203061A212319882E267D2F901067B80FEBDFE8EDE7E1DBECE2EAE6DEE0DAE4002004Bock
-```
-
-## Krønike
-
 ### Anden Æra i Overmagtens tegn, <br/> Andreas II's herredømme
 Skyerne trækker sig sammen over landet. En ny æra begynder...
 
@@ -98,9 +40,9 @@ Il Duce holder den magiske ring foran sit ansigt. "Hævnens time er kommet. Rigs
 
 ---
 
-Ved Den Frodige Kyst skinner solen, og folket er samlet foran kanslerens domicil. En gullig iklædt skikkelse træder ud på balkonen. 
+Ved Den Frodige Kyst skinner solen, og folket er samlet foran kanslerens domicil. En gullig iklædt skikkelse træder ud på balkonen.
 
-“Folkets stemme er vores kald. Vi lytter og handler derefter. Vi er Vox Populi. Først var stemmen rasende. Efter flere års tyranni og arrogance kaldte stemmen på hævn, og vi drog i en blodig krig mod Alexander I. Vi havde sejre, jovist, men prisen var en del af vores sjæl og alt for mange menneskers blod. Det er folket ikke tjent med. Under Alexander III var vi sande tjenere af folket. Vi rejste riget rundt, skabte alliancer og sikrede rigdom og velstand. Således vandt vi folkets gunst. 
+“Folkets stemme er vores kald. Vi lytter og handler derefter. Vi er Vox Populi. Først var stemmen rasende. Efter flere års tyranni og arrogance kaldte stemmen på hævn, og vi drog i en blodig krig mod Alexander I. Vi havde sejre, jovist, men prisen var en del af vores sjæl og alt for mange menneskers blod. Det er folket ikke tjent med. Under Alexander III var vi sande tjenere af folket. Vi rejste riget rundt, skabte alliancer og sikrede rigdom og velstand. Således vandt vi folkets gunst.
 Længe var der fred, men den varede ikke ved. Den Blodige Greve ønskede vendetta for en gammel fejde, og Bastarden hviskede søde ord til hoffet. Men riget bestod, for folkets stemme råbte: ‘Vi vil fred!’ Og her står vi dag, Vox Populi, hengivne til folket.”
 
 Under jubel fra de tilhørende iklædes skikkelsen en maske og en lilla kåbe og rækkes det gyldne scepter.
@@ -135,7 +77,7 @@ _Bastardens Dagbog: Håb for fremtiden_.
 
 ”Min determination til at vende aggressivt og nådesløst tilbage, viste sig at være den helt rette strategi. Og for måske første gang i mit tragiske liv, oplevede jeg hvordan Den Gyldne Gudinde velsignede mig med sit blændende smil, da den smaragdgrønne djembe faldt i mine hænder dybt i drageruinernes afkroge. Dette magiske slagtøj producerede rytmer uden mage: rebelske takter, som fik enhver krigers hjerte til at bruse over af kampgejst. Med disse rytmer i ryggen, tog det ingen tid, før den første sejr kunne pryde mit banner. Den gæve Vox kunne ikke matche min pludseligt opståede hær, og dermed kunne jeg erobre mit andet relikvie: den gule djævels elskede messinghest. Et bæst fra fjerne regioner i østen, som med sin stædige evne til at trave under alle tænkelige vejrforhold og underlag, var netop den loyale partner jeg havde brug for. På dens skinnende ryg var alle rigets hjørner nu nabostæder, og tilslutningen til min armada blev en bagatel.”
 
-”Efter flere grusomme møder med den gule satan og den røde ræv, stod jeg blodig og mør tilbage, men farligere og stærkere end før. Med endnu flere klenodier og en hær fuld af momentum var jeg klar til at marchere mod tronen. Men jeg var for langsom, og jeg vidste det. For selvfølgelig har canceren med kronen ikke siddet stille og kigge på, den type væsen er han ikke. Om jeg vil det eller jeg, deler vi blod. Og har han blot en dråbe af den samme sorte, tyktflydende Styx, som flyder gennem mine årer, så ville dette altid være blevet udfaldet. Han var for hurtig, og for snu. På den tid jeg havde bygget mine tropper og mit arsenal op, havde han sit scepter for dybt oppe i røven på riget. Folket havde talt. Min styrke var ligegyldig.” 
+”Efter flere grusomme møder med den gule satan og den røde ræv, stod jeg blodig og mør tilbage, men farligere og stærkere end før. Med endnu flere klenodier og en hær fuld af momentum var jeg klar til at marchere mod tronen. Men jeg var for langsom, og jeg vidste det. For selvfølgelig har canceren med kronen ikke siddet stille og kigge på, den type væsen er han ikke. Om jeg vil det eller jeg, deler vi blod. Og har han blot en dråbe af den samme sorte, tyktflydende Styx, som flyder gennem mine årer, så ville dette altid være blevet udfaldet. Han var for hurtig, og for snu. På den tid jeg havde bygget mine tropper og mit arsenal op, havde han sit scepter for dybt oppe i røven på riget. Folket havde talt. Min styrke var ligegyldig.”
 
 ”Men jeg har allerede bevist, at jeg kan komme igen. Og komme igen med en tordnende revanche. Og jeg gør det gerne igen. Og igen. Indtil mit løfte bliver til virkelighed…”
 
@@ -156,9 +98,9 @@ Han kalder sin mægtige hær til samling, og råber med fast røst: "Mine tro f�
 
 _Bastardens Dagbog: En Ydmygende Retur._
 
-”Jeg afgav et løfte, en ed! Den skæbnesvangre nat for 13 år siden. Jeg svor…” 
+”Jeg afgav et løfte, en ed! Den skæbnesvangre nat for 13 år siden. Jeg svor…”
 
-”Hybris kan vise sig skarpere end lejemorderens kniv, spidsere end langbuernes pil og mere fatal end baggårdsluderens skede. En smertefuld lektie jeg aldrig glemmer igen. Pokker tag mig! Det skulle have været en strålende retur for El Bastardo! En overbevisende sejr! Men billedet mine spioner malede kunne ikke afspejle den hårde virkelighed mindre.” 
+”Hybris kan vise sig skarpere end lejemorderens kniv, spidsere end langbuernes pil og mere fatal end baggårdsluderens skede. En smertefuld lektie jeg aldrig glemmer igen. Pokker tag mig! Det skulle have været en strålende retur for El Bastardo! En overbevisende sejr! Men billedet mine spioner malede kunne ikke afspejle den hårde virkelighed mindre.”
 
 ”På trods af den nye titel, skulle den tidligere tyrans løjtnant, Alexander I, ikke være andet end en glorificeret stikirenddreng. Men nu har jeg set, hvilket monster der i virkeligheden gemmer sig. Fanden tag hvad end jeg skulle dele med ham af blod! Få ting giver mig så meget lykke som at se mit eget blod flyde i kamp. For hvis bare en enkel dråbe af giften, af det forbandede…”
 
